@@ -50,7 +50,7 @@ class BinanceClient(object):
             if d.get('symbol') == symbol:
                 return d
 
-    def order(self, symbol, side, trade_type, quantity, price, new_client_order_id=None, stop_price=None, iceberg_qty=None):
+    def order(self, symbol, side, trade_type, quantity, price=None, new_client_order_id=None, stop_price=None, iceberg_qty=None):
         """
         Place buy or sell order for symbol
 
