@@ -1,3 +1,11 @@
+################################################################
+ # BinanceClient
+ # https://github.com/radarthreat/BinanceClient
+ # ============================================================
+ # Copyright 2017, Paul Sethre
+ # Released under the MIT License
+################################################################
+
 import requests
 import json
 import time
