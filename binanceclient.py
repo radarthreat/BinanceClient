@@ -89,6 +89,25 @@ class BinanceClient(object):
 
         return response.content
 
+    def order_book(self, symbol, limit=100):
+        payload = {"symbol": symbol,
+                   "limit": limit}
+
+        response = requests.get(self.api_url+'api/v1/depth', params=payload)
+
+        return response.content
+
+    def aggregate_trades(self, symbol, from_id=None, start_time=None, end_time=None, limit=100):
+        payload = {"symbol": symbol,
+                   "fromId": from_id,
+                   "startTime": start_time,
+                   "endTime": end_time,
+                   "limit": limit}
+
+        response = requests.get(self.api_url+'api/v1/aggTrades', params=payload)
+
+        return response
+
     def order_status(self, symbol, order_id=None, orig_client_order_id=None):
         """
         Get status of order
@@ -163,15 +182,16 @@ class BinanceClient(object):
                    "timestamp": int(time.time() * 1000)
                    }
 
-        request = requests.Request('GET',
-                                   self.api_url+'api/v3/openOrders',
+        request = requests.Request('POST',
+                                   self.api_url + 'api/v3/openOrders',
                                    params=payload,
                                    headers=headers)
 
-        prepared_request = request.prepare()
-        query_string = prepared_request.url.split('?')[1].encode()
-        signature = self.sign_transaction(self.api_secret, query_string)
+        q_string = urlencode(payload, doseq=True).encode()
+        signature = self.sign_transaction(self.api_secret, q_string)
         request.params['signature'] = signature
+        prepared_request = request.prepare()
+
         with requests.Session() as session:
             response = session.send(prepared_request)
 
