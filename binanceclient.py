@@ -106,7 +106,7 @@ class BinanceClient(object):
 
         response = requests.get(self.api_url+'api/v1/aggTrades', params=payload)
 
-        return response
+        return response.content
 
     def order_status(self, symbol, order_id=None, orig_client_order_id=None):
         """
@@ -136,7 +136,7 @@ class BinanceClient(object):
         with requests.Session() as session:
             response = session.send(prepared_request)
 
-        return response
+        return response.content
 
     def cancel_order(self, symbol, order_id=None, orig_client_order_id=None):
         """
@@ -166,7 +166,7 @@ class BinanceClient(object):
         with requests.Session() as session:
             response = session.send(request)
 
-        return response
+        return response.content
 
     def open_orders(self, symbol):
         """
@@ -195,7 +195,7 @@ class BinanceClient(object):
         with requests.Session() as session:
             response = session.send(prepared_request)
 
-        return response
+        return response.content
 
     def current_positions(self):
         """
@@ -218,7 +218,7 @@ class BinanceClient(object):
         with requests.Session() as session:
             response = session.send(prepared_request)
 
-        return response
+        return response.content
 
     def withdraw_history(self, asset=None, status=None, start_time=None, end_time=None):
         """
@@ -252,7 +252,7 @@ class BinanceClient(object):
         with requests.Session() as session:
             response = session.send(request)
 
-        return response
+        return response.content
 
     def deposit_history(self, asset=None, status=None, start_time=None, end_time=None):
         """
@@ -286,7 +286,7 @@ class BinanceClient(object):
         with requests.Session() as session:
             response = session.send(request)
 
-        return response
+        return response.content
 
     def withdraw(self, asset, address, amount, name=None):
         """
@@ -324,4 +324,4 @@ class BinanceClient(object):
         with requests.Session() as session:
             response = session.send(request)
 
-        return response
+        return response.content
