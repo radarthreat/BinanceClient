@@ -30,7 +30,12 @@ bc.all_prices()
 
 ### Place market buy order (5 shares at price of 100)
 ```
-bc.order('TICKER', 'BUY', 'MARKET', 5, 100)
+bc.order('TICKER', 'BUY', 'MARKET', 5, price=100)
+```
+
+### Place stop limit order
+```
+bc.order('TICKER', 'SELL', 'LIMIT', 5, stop_price=100)
 ```
 
 ### Get order status
