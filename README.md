@@ -1,6 +1,6 @@
 # BinanceClient
 
-BinanceClient is a Python client for interacting with the Binance (www.binance.com) REST API.
+BinanceClient is a Python client for interacting with the Binance (www.binance.com) REST API. This is a third-party package and is not affiliated in any way with Binance.
 
 ## Installation
 ```
